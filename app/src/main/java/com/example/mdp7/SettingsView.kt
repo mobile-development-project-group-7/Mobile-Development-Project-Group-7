@@ -2,6 +2,7 @@ package com.example.mdp7
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.material.Checkbox
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -68,7 +69,17 @@ fun SettingsView() {
             }
         }
 
-        Text(text = "Choose category:")
+        Row(){
+            val isChecked = remember { mutableStateOf(false) }
+            Checkbox(
+                checked = isChecked.value,
+                onCheckedChange = {
+                    isChecked.value = it
+                }
+            )
+            Text(text = "Choose category:")
+
+        }
 
 
         Text(text = "Send me notification")

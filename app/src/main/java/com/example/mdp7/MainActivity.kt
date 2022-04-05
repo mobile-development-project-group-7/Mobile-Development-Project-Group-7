@@ -20,7 +20,11 @@ class MainActivity : ComponentActivity() {
             MDP7Theme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
+<<<<<<< HEAD
                     //SettingsView()
+=======
+
+>>>>>>> 88dee72ed015f3cfff91e1bf7cff62d0b0bf25dc
                 }
             }
         }
@@ -32,6 +36,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     MDP7Theme {
+<<<<<<< HEAD
         //SettingsView()
+=======
+
+>>>>>>> 88dee72ed015f3cfff91e1bf7cff62d0b0bf25dc
     }
 }

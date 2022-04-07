@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
             MDP7Theme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    RegistrationApp()
                 }
             }
         }
@@ -29,10 +29,10 @@ fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 360, heightDp = 800)
 @Composable
 fun DefaultPreview() {
     MDP7Theme {
-        Greeting("Android")
+        RegistrationApp()
     }
 }

@@ -51,6 +51,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     MDP7Theme {
-        
+        MainView()
     }
 }

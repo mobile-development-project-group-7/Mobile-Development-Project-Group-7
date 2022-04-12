@@ -24,6 +24,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class Registration : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +74,7 @@ class Registration : ComponentActivity() {
 
             )
             OutlinedButton(
-                onClick = {},
+                onClick = { Firebase.auth.createUserWithEmailAndPassword(email,password)},
                 border = BorderStroke(1.dp, Color.Black),
                 shape = RoundedCornerShape(5.dp),
                 modifier = Modifier

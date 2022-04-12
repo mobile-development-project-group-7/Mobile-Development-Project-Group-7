@@ -1,14 +1,21 @@
 package com.example.mdp7
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.material.Checkbox
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.material.Slider
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.White
 
-@Composable
+
+
+
+        @Composable
 fun SettingsView() {
 
 
@@ -24,50 +31,148 @@ fun SettingsView() {
         mutableStateOf("")
     }
 
-    Column() {
-        Text(text = "Settings")
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    )
+    {
+        Text(
+            text = "Settings",
+            style = MaterialTheme.typography.h4
+        )
 
-        Text(text = "Set Your Budget")
-        Text(text = "Per month")
-        OutlinedButton(onClick = { /*TODO*/ }) {
-            Text(text = "Save")
-        }
-        Text(text = "New remider")
+        var sliderPosition by remember { mutableStateOf(0f) }
+       Row(
+           modifier = Modifier.padding(top = 30.dp)
+       ) {
+           Text("Set your budget €: ")
+           Text(
+            text =  sliderPosition.toString()
+            )
 
-        Row() {
-            OutlinedButton(onClick = { /*TODO*/ }) {
-                Text(text = "Bill")
+       }
+        Slider(
+            value = sliderPosition,
+            onValueChange = { sliderPosition = it },
+            valueRange = 0f..1000f,
+            colors = SliderDefaults.colors(
+                thumbColor = MaterialTheme.colors.primary,
+                activeTrackColor = MaterialTheme.colors.primary
+            ),
+            modifier = Modifier.width(250.dp)
+        )
+
+
+       Button(
+            onClick = {  },
+            shape = RoundedCornerShape(5.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
+        ) {
+
+            Text(
+                text = "Save",
+                color = White)
+        }
+
+        Text(text = "New reminder")
+
+        Row(
+            modifier = Modifier.padding(top = 30.dp)
+        ) {
+            OutlinedButton(
+                onClick = { /*TODO*/ },
+                shape = RoundedCornerShape(5.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue)
+                ) {
+                Text(
+                    text = "Bill",
+                    color = White)
             }
-            OutlinedButton(onClick = { /*TODO*/ }) {
-                Text(text = "Income")
+            OutlinedButton(
+                onClick = { /*TODO*/ },
+                shape = RoundedCornerShape(5.dp),
+                modifier = Modifier.padding(start = 15.dp)
+                ) {
+                Text(
+                    text = "Income",
+                    color = Black)
             }
         }
-        Row() {
+        Row(
+            modifier = Modifier.padding(top = 30.dp)
+        ) {
             Text(text = "Name:")
-            OutlinedTextField(value = name, onValueChange ={name=it} )
+            OutlinedTextField(
+                value = name,
+                onValueChange ={name=it},
+                modifier = Modifier
+                    .width(200.dp)
+                    .height(40.dp)
+                    .padding(start = 15.dp)
+            )
         }
 
-        Row() {
+        Row(
+            modifier = Modifier.padding(top = 10.dp)
+        ) {
             Text(text = "Total:")
-            OutlinedTextField(value = total, onValueChange ={total=it} )
+            OutlinedTextField(
+                value = total,
+                onValueChange ={total=it},
+                modifier = Modifier
+                    .width(200.dp)
+                    .height(40.dp)
+                    .padding(start = 15.dp)
+            )
         }
 
-        Row() {
+        Row(
+            modifier = Modifier.padding(top = 10.dp)
+        ) {
             Text(text = "Date:")
-            OutlinedTextField(value = date, onValueChange ={date=it} )
+            OutlinedTextField(
+                value = date,
+                onValueChange ={date=it},
+                modifier = Modifier
+                    .width(200.dp)
+                    .height(40.dp)
+                    .padding(start = 15.dp)
+            )
         }
 
-        Row() {
-            OutlinedButton(onClick = { /*TODO*/ }) {
-                Text(text = "Weekly")
+        Row(
+            modifier = Modifier.padding(top = 30.dp)
+        ) {
+            OutlinedButton(
+                onClick = { /*TODO*/ },
+                shape = RoundedCornerShape(5.dp),
+                modifier = Modifier.padding(start = 10.dp)
+            ) {
+                Text(text = "Weekly",
+                    color = Black)
             }
-            OutlinedButton(onClick = { /*TODO*/ }) {
-                Text(text = "Monthly")
+            OutlinedButton(
+                onClick = { /*TODO*/ },
+                shape = RoundedCornerShape(5.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue),
+
+                modifier = Modifier.padding(start = 15.dp)) {
+                Text(text = "Monthly",
+                    color = White)
             }
-            OutlinedButton(onClick = { /*TODO*/ }) {
-                Text(text = "Annual")
+            OutlinedButton(
+                onClick = { /*TODO*/ },
+                shape = RoundedCornerShape(5.dp),
+                modifier = Modifier.padding(start = 15.dp)
+            ) {
+                Text(text = "Annual",
+                    color = Black)
             }
         }
+
+        Text(text = "Choose cathegory")
 
         Row(){
             val isChecked = remember { mutableStateOf(false) }
@@ -77,14 +182,20 @@ fun SettingsView() {
                     isChecked.value = it
                 }
             )
-            Text(text = "Choose category:")
+            Text(text = "Send me notification")
 
         }
 
+        Button(
+            onClick = {  },
+            shape = RoundedCornerShape(5.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
+            modifier = Modifier.padding(top = 20.dp)
+        ) {
 
-        Text(text = "Send me notification")
-        OutlinedButton(onClick = { /*TODO*/ }) {
-            Text(text = "Save")
+            Text(
+                text = "Save",
+                color = White)
         }
 
     }

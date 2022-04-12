@@ -31,13 +31,12 @@ import com.google.firebase.ktx.Firebase
 class MainActivity : ComponentActivity() {
 
     companion object{
-       
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MDP7Theme {
-               MainView()
+                MainView()
             }
         }
     }

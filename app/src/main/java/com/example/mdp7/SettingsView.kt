@@ -11,11 +11,10 @@ import androidx.compose.material.Slider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.White
+import com.example.mdp7.components.TransactionTypeChip
 
 
-
-
-        @Composable
+@Composable
 fun SettingsView() {
 
 
@@ -80,25 +79,28 @@ fun SettingsView() {
 
         Row(
             modifier = Modifier.padding(top = 30.dp)
-        ) {
-            OutlinedButton(
-                onClick = { /*TODO*/ },
-                shape = RoundedCornerShape(5.dp),
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue)
-                ) {
-                Text(
-                    text = "Bill",
-                    color = White)
+        )
+
+        {
+            val transactionTypeChipRemeberOneState = remember {
+                mutableStateOf(false)
             }
-            OutlinedButton(
-                onClick = { /*TODO*/ },
-                shape = RoundedCornerShape(5.dp),
-                modifier = Modifier.padding(start = 15.dp)
-                ) {
-                Text(
-                    text = "Income",
-                    color = Black)
-            }
+            TransactionTypeChip(
+                text = "Income",
+                isSelected = transactionTypeChipRemeberOneState.value,
+                selectedColor = Color.Blue,
+                onChecked = {
+                    transactionTypeChipRemeberOneState.value = it
+                }
+            )
+            TransactionTypeChip(
+                text = "Bills",
+                isSelected = transactionTypeChipRemeberOneState.value,
+                selectedColor = Color.Blue,
+                onChecked = {
+                    transactionTypeChipRemeberOneState.value = it
+                }
+            )
         }
         Row(
             modifier = Modifier.padding(top = 30.dp)

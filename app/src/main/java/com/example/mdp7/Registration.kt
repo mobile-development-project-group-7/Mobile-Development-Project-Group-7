@@ -23,90 +23,83 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class Registration : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MDP7Theme {
-                RegistrationApp()
-            }
-        }
-    }
-}
+
 
 @Composable
-    fun RegistrationApp() {
-        Column(
+fun RegistrationApp() {
+    var email by remember{
+        mutableStateOf("")
+    }
+    var password by remember {
+        mutableStateOf("")
+
+    }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = 10.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(R.drawable.budgettracker),
+            contentDescription = "Logo",
             modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 10.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                painter = painterResource(R.drawable.budgettracker),
-                contentDescription = "Logo",
-                modifier = Modifier
-                    .width(250.dp)
-                    .height(70.dp)
-                    .padding(bottom = 20.dp)
-            )
-            Text (
-                modifier = Modifier.padding(bottom = 10.dp, top = 10.dp),
-                text = "Enter your email")
-            TextField(
-                modifier = Modifier
-                    .width(200.dp)
-                    .height(40.dp)
+                .width(250.dp)
+                .height(70.dp)
+                .padding(bottom = 20.dp)
+        )
+        Text (
+            modifier = Modifier.padding(bottom = 10.dp, top = 10.dp),
+            text = "Enter your email")
 
-            )
-            Text (
-                modifier = Modifier.padding(bottom = 10.dp, top = 10.dp),
-                text = "Enter your password")
-            TextField(
-                modifier = Modifier
-                .width(200.dp)
-                .height(40.dp)
+        OutlinedTextField(
+            value = email,
+            onValueChange = { email = it },
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.Black,
+                unfocusedBorderColor = Color.Black))
 
-            )
-            OutlinedButton(
-                onClick = { Firebase.auth.createUserWithEmailAndPassword(email,password)},
-                border = BorderStroke(1.dp, Color.Black),
-                shape = RoundedCornerShape(5.dp),
-                modifier = Modifier
-                    .defaultMinSize(
+        Text (
+            modifier = Modifier.padding(bottom = 10.dp, top = 10.dp),
+            text = "Enter your password")
+
+        OutlinedTextField(
+
+            value = password,
+            onValueChange = { password = it },
+            visualTransformation = PasswordVisualTransformation(),
+
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.Black,
+                unfocusedBorderColor = Color.Black)
+        )
+        OutlinedButton(
+            onClick = { Firebase.auth.createUserWithEmailAndPassword(email,password)},
+            border = BorderStroke(1.dp, Color.Black),
+            shape = RoundedCornerShape(5.dp),
+            modifier = Modifier
+                .defaultMinSize(
                     minWidth = 120.dp,
                     minHeight = 35.dp
                 )
-                    .padding(top = 50.dp)
+                .padding(top = 50.dp)
 
-            ) {
-                Text(
-                    "Create account",
-                    style = MaterialTheme.typography.body2,
-                    color = Color.Black
-                )
-            }
 
+        ) {
+            Text(
+                "Create account",
+                style = MaterialTheme.typography.body2,
+                color = Color.Black
+            )
         }
-    }
 
-    @Composable
-    fun TextField(modifier: Modifier) {
-        var text by remember { mutableStateOf(TextFieldValue("")) }
-        OutlinedTextField(
-            modifier = Modifier
-                .width(200.dp)
-                .height(40.dp)
-                .border(border = BorderStroke(1.dp, Color.Black)),
-            value = text,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-            onValueChange = { text = it }
-        )
     }
+}
 
 

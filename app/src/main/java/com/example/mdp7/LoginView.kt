@@ -3,10 +3,10 @@ package com.example.mdp7
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.activity.ComponentActivity
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -15,7 +15,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
@@ -30,22 +32,59 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
+
+
 @Composable
 
-fun MainView(){
+fun MainView(navController: NavHostController){
+
+
     val userVM = viewModel<UserViewModel>()
 
     if (userVM.username.value.isEmpty()){
-        LoginView(userVM)
-    }else{
-        Text(text = userVM.username.value)
-    }
+            LoginView(userVM)
+
+        Text(text = "Register",
+            modifier = Modifier.clickable{navController.navigate(REGISTRATION_ROUTE)}
+        )
+        }else{
+            MainScaffoldView()
+
+        }
+}
+@Composable
+fun MainScaffoldView(){
+
+    val navController = rememberNavController()
+
+    Scaffold(
+        topBar = {
+            TopBarUsername()
+        },
+        content = {
+            Navigation(navController)
+        }
+    )
 }
 
+@Composable
+fun TopBarUsername(){
+    val userVM = viewModel<UserViewModel>()
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.LightGray)
+            .padding(10.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text(text = userVM.username.value)
 
-
+    }
+}
 @Composable
 fun LoginView(userVM: UserViewModel) {
+
     var email by remember{
         mutableStateOf("")
     }
@@ -55,27 +94,69 @@ fun LoginView(userVM: UserViewModel) {
     }
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp),
-        verticalArrangement = Arrangement.SpaceEvenly,
+            .fillMaxSize()
+            .padding(top = 10.dp),
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Image(
+            painter = painterResource(R.drawable.budgettracker),
+            contentDescription = "Logo",
+            modifier = Modifier
+                .width(250.dp)
+                .height(70.dp)
+                .padding(bottom = 20.dp)
+        )
+        Text (
+            modifier = Modifier.padding(bottom = 10.dp, top = 10.dp),
+            text = "Enter your email")
+
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text(text = "email") })
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.Black,
+                unfocusedBorderColor = Color.Black))
+
+        Text (
+            modifier = Modifier.padding(bottom = 10.dp, top = 10.dp),
+            text = "Enter your password")
 
         OutlinedTextField(
+
             value = password,
             onValueChange = { password = it },
-            label = { Text(text = "password") },
-            visualTransformation = PasswordVisualTransformation()
-        )
+            visualTransformation = PasswordVisualTransformation(),
 
-        OutlinedButton(onClick = { userVM.loginUser(email, password) }) {
-            Text(text = "Log in", color = Color.Black)
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.Black,
+                unfocusedBorderColor = Color.Black)
+        )
+        OutlinedButton(
+            onClick = {userVM.loginUser(email, password)},
+            border = BorderStroke(1.dp, Color.Black),
+            shape = RoundedCornerShape(5.dp),
+            modifier = Modifier
+                .defaultMinSize(
+                    minWidth = 120.dp,
+                    minHeight = 35.dp
+                )
+                .padding(top = 50.dp)
+
+
+        ) {
+            Text(
+                "Log in",
+                style = MaterialTheme.typography.body2,
+                color = Color.Black
+            )
         }
 
-
     }
-}
+
+
+
+   }
+
+
+

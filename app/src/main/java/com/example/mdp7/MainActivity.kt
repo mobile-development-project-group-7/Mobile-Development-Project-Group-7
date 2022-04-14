@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MDP7Theme {
-                MainView()
+                MainScaffoldView()
             }
         }
     }
@@ -50,6 +50,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     MDP7Theme {
-        MainView()
+        MainScaffoldView()
     }
 }

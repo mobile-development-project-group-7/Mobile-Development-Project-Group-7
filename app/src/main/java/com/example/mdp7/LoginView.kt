@@ -42,11 +42,9 @@ fun MainView(navController: NavHostController){
     val userVM = viewModel<UserViewModel>()
 
     if (userVM.username.value.isEmpty()){
-            LoginView(userVM)
 
-        Text(text = "Register",
-            modifier = Modifier.clickable{navController.navigate(REGISTRATION_ROUTE)}
-        )
+       LoginView(userVM)
+
         }else{
             MainScaffoldView()
 
@@ -63,10 +61,27 @@ fun MainScaffoldView(){
         },
         content = {
             Navigation(navController)
+Row( horizontalArrangement = Arrangement.SpaceBetween){
+    Text(text = "Register",
+        modifier = Modifier.clickable{navController.navigate(REGISTRATION_ROUTE)}
+    )
+    Text(text = "Log in",
+        modifier = Modifier.clickable{navController.navigate(LOGIN_ROUTE)}
+    )
+}
         }
     )
 }
+@Composable
+fun MainViewTest(navController: NavHostController){
+    val userVM = viewModel<UserViewModel>()
 
+    LoginView(userVM)
+
+    Text(text = "Register",
+        modifier = Modifier.clickable{navController.navigate(REGISTRATION_ROUTE)}
+    )
+}
 @Composable
 fun TopBarUsername(){
     val userVM = viewModel<UserViewModel>()

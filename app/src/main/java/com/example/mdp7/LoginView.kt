@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -61,13 +62,14 @@ fun MainScaffoldView(){
         },
         content = {
             Navigation(navController)
-Row( horizontalArrangement = Arrangement.SpaceBetween){
-    Text(text = "Register",
-        modifier = Modifier.clickable{navController.navigate(REGISTRATION_ROUTE)}
-    )
+Column( verticalArrangement = Arrangement.SpaceAround){
     Text(text = "Log in",
         modifier = Modifier.clickable{navController.navigate(LOGIN_ROUTE)}
     )
+    Text(text = "Register",
+        modifier = Modifier.clickable{navController.navigate(REGISTRATION_ROUTE)}
+    )
+
 }
         }
     )

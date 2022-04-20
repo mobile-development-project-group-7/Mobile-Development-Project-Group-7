@@ -9,7 +9,7 @@ import androidx.navigation.compose.composable
 
 const val LOGIN_ROUTE = "login"
 const val REGISTRATION_ROUTE = "registration"
-const val CALENDAR_ROUTE = "calendar"
+const val REMINDERS_ROUTE = "reminders"
 const val SETTINGS_ROUTE = "settings"
 const val HOME_ROUTE = "home"
 const val STATISTICS_ROUTE = "statistics"
@@ -24,7 +24,7 @@ fun Navigation(navController: NavHostController){
         composable(route = REGISTRATION_ROUTE) { RegistrationApp() }
         composable(route = HOME_ROUTE) { }
         composable(route = STATISTICS_ROUTE) { }
-        composable(route = CALENDAR_ROUTE) { }
+        composable(route = REMINDERS_ROUTE) { }
         composable(route = SETTINGS_ROUTE) { }
 
 

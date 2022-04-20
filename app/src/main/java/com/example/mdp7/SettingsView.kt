@@ -2,11 +2,9 @@ package com.example.mdp7
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material.Checkbox
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.res.painterResource
 
 @Composable
 fun SettingsView() {
@@ -69,6 +67,11 @@ fun SettingsView() {
             }
         }
 
+        Text(text = "Choose category:")
+        Row() {
+            Icon(painter = painterResource(id = R.drawable.ic_food), contentDescription = "food_category_icon")
+            Icon(painter = painterResource(id = R.drawable.ic_transport), contentDescription = "transport_category_icon")
+        }
         Row(){
             val isChecked = remember { mutableStateOf(false) }
             Checkbox(
@@ -77,12 +80,11 @@ fun SettingsView() {
                     isChecked.value = it
                 }
             )
-            Text(text = "Choose category:")
-
+            Text(text = "Send me notification")
         }
 
 
-        Text(text = "Send me notification")
+
         OutlinedButton(onClick = { /*TODO*/ }) {
             Text(text = "Save")
         }

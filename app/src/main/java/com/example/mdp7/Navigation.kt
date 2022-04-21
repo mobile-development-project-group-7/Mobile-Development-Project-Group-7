@@ -23,7 +23,7 @@ fun Navigation(navController: NavHostController){
         composable(route = LOGIN_ROUTE) { LoginView(userVM) }
         composable(route = REGISTRATION_ROUTE) { RegistrationApp() }
         composable(route = HOME_ROUTE) { }
-        composable(route = STATISTICS_ROUTE) { }
+        composable(route = STATISTICS_ROUTE) { StatisticsView() }
         composable(route = REMINDERS_ROUTE) { }
         composable(route = SETTINGS_ROUTE) { }
 

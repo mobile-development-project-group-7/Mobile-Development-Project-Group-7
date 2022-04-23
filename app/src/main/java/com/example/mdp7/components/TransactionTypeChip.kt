@@ -85,11 +85,11 @@ fun ImageChip(
             )
             .border(
                 width = 1.dp,
-                color = if (isSelected) tintColor else LightGray,
+                color = if (isSelected) Black else tintColor,
                 shape = Shapes.medium
             )
             .background(
-                color = if (isSelected) Transparent else tintColor,
+                color = if (isSelected) tintColor else Transparent,
                 shape = Shapes.medium
             )
             .clip(shape = Shapes.medium)
@@ -99,7 +99,7 @@ fun ImageChip(
             .padding(2.dp)
     ) {
         Icon(imageVector = imageVector,
-            tint = if (isSelected)  tintColor else Black,
+            tint =   if (isSelected) Black else Color(0xFF484848),
             contentDescription = null
         )
     }

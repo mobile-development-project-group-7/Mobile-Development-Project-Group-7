@@ -1,5 +1,6 @@
 package com.example.mdp7
 
+import MainView
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -22,7 +23,7 @@ fun Navigation(navController: NavHostController){
     NavHost(navController = navController, startDestination = LOGIN_ROUTE) {
         composable(route = LOGIN_ROUTE) { LoginView(userVM) }
         composable(route = REGISTRATION_ROUTE) { RegistrationApp() }
-        composable(route = HOME_ROUTE) { }
+        composable(route = HOME_ROUTE) {MainView()}
         composable(route = STATISTICS_ROUTE) { StatisticsView() }
         composable(route = REMINDERS_ROUTE) { TestMainForm() }
         composable(route = SETTINGS_ROUTE) {SettingsView() }

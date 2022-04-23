@@ -98,7 +98,7 @@ class MainActivity : ComponentActivity() {
                             }
 
                         ) {
-                            Icon(Icons.Rounded.Menu, contentDescription = "Localized description")
+                            Icon(Icons.Rounded.Menu, contentDescription = "Menu")
                         }
                         DropdownMenu(
                             expanded = expanded.value ,

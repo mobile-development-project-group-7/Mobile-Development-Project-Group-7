@@ -24,8 +24,8 @@ fun Navigation(navController: NavHostController){
         composable(route = REGISTRATION_ROUTE) { RegistrationApp() }
         composable(route = HOME_ROUTE) { }
         composable(route = STATISTICS_ROUTE) { StatisticsView() }
-        composable(route = REMINDERS_ROUTE) { }
-        composable(route = SETTINGS_ROUTE) { }
+        composable(route = REMINDERS_ROUTE) { TestMainForm() }
+        composable(route = SETTINGS_ROUTE) {SettingsView() }
 
 
     }

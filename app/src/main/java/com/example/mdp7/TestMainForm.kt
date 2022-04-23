@@ -5,8 +5,10 @@ import android.content.ContentValues
 import android.util.Log
 import android.widget.DatePicker
 import androidx.activity.ComponentActivity
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -34,10 +36,10 @@ fun TestMainForm(){
     var total by remember {
         mutableStateOf("")}
 
-    var TransactionName by remember {
+    var transactionName by remember {
         mutableStateOf("")
     }
-    var TransactionTotal by remember { mutableStateOf("") }
+    var transactionTotal by remember { mutableStateOf("") }
     val mContext = LocalContext.current
     val mYear: Int
     val mMonth: Int
@@ -50,11 +52,11 @@ fun TestMainForm(){
     mDay = mCalendar.get(Calendar.DAY_OF_MONTH)
     mCalendar.time = Date()
 
-    val TransactionDate = remember { mutableStateOf("") }
+    val transactionDate = remember { mutableStateOf("") }
     val mDatePickerDialog = DatePickerDialog(
         mContext,
         { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-            TransactionDate.value = "$mDayOfMonth/${mMonth + 1}/$mYear"
+            transactionDate.value = "$mDayOfMonth/${mMonth + 1}/$mYear"
         }, mYear, mMonth, mDay
     )
 
@@ -66,35 +68,69 @@ fun TestMainForm(){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        OutlinedTextField(value = TransactionName,
-            onValueChange = { TransactionName = it })
-
+        Row() {
+            Text(text = "Name:")
+            OutlinedTextField(
+                modifier = Modifier
+                    .width(200.dp)
+                    .height(40.dp)
+                    .padding(start = 15.dp),
+                value = transactionName,
+                onValueChange = { transactionName = it },
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color.Black,
+                    unfocusedBorderColor = Color.Black))
+        }
         Spacer(modifier = Modifier.height(10.dp))
+        Row() {
+            Text(text = "Total:")
+            OutlinedTextField(
+                modifier = Modifier
+                    .width(200.dp)
+                    .height(40.dp)
+                    .padding(start = 15.dp),
+                value = transactionTotal,
+                onValueChange = { transactionTotal = it },
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color.Black,
+                    unfocusedBorderColor = Color.Black)
 
-        OutlinedTextField(value = TransactionTotal,
-            onValueChange ={TransactionTotal = it } ,
-        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+                )
+        }
+        Spacer(modifier = Modifier.height(10.dp))
+        OutlinedButton(
+            border = BorderStroke(1.dp, Color.Black),
+            shape = RoundedCornerShape(5.dp),
+            modifier = Modifier
+                .defaultMinSize(
+                    minWidth = 120.dp,
+                    minHeight = 35.dp
+                ),
 
-        )
-        Button(onClick = {
+                    onClick = {
                 mDatePickerDialog.show()
             }) {
-                Text(text = "Choose date", color = Color.White)
+                Text(text = "Choose date",
+                    style = MaterialTheme.typography.body2,
+                    color = Color.Black)
             }
         Spacer(modifier = Modifier.height(20.dp))
         Button(
+
             onClick = {
+
                 db
                     .collection("transactions")
-                    .document(TransactionName)
-                    .set(Transaction(TransactionTotal))
+                    .document(transactionName)
+                    .set(Transaction(transactionTotal))
 
-                TransactionVM.addTransaction(Transaction(TransactionTotal))
+                TransactionVM.addTransaction(Transaction(transactionTotal))
 
 
                 db
                     .collection("Transactions")
-                    .document(TransactionName)
+                    .document(transactionName)
                     .get()
                     .addOnSuccessListener {
                         total = it.get("TransactionTotal").toString()
@@ -109,9 +145,17 @@ fun TestMainForm(){
                         Log.w(ContentValues.TAG, "Error getting documents.", exception)
                     }
 
-            }) {
-            Text(text = "Save")
-        }
+            },
+            shape = RoundedCornerShape(5.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFF25F5C))
+        )
+         {
+
+        Text(
+            text = "Save",
+            color = Color.White
+        )
+    }
         }
 
 
@@ -132,12 +176,12 @@ fun TestMainForm(){
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ){
-                        Text(text = TransactionName,
+                        Text(text = transactionName,
                             color= Color(0xFF27303F),
                         fontWeight= FontWeight.Bold
                         )
                         Spacer(modifier = Modifier.width(170.dp))
-                        Text(text = TransactionTotal + "€",
+                        Text(text = transactionTotal + "€",
                             color= Color(0xFF27303F),
                             fontWeight= FontWeight.Bold
                             
@@ -145,7 +189,7 @@ fun TestMainForm(){
                     }
 
                     Text(
-                        text = "${TransactionDate.value}",
+                        text = "${transactionDate.value}",
                         color= Color(0xFF64748B)
                     )
 

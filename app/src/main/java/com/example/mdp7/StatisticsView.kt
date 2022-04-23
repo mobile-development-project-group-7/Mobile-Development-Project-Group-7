@@ -31,8 +31,8 @@ fun StatisticsView(){
 fun PieChart(
     values: List<Float> = listOf(15f, 15f, 40f, 20f,5f,5f),
     colors: List<Color> = listOf(
-        Color(0xFFF25F5C), Color(0xFF67C587), Color(0xFFFFE066), Color(
-        0xFF247BA0), Color(0xFF0AAEB9), Color(0xFFEAF6ED)
+        Color(0xFFF25F5C), Color(0xFF67C587), Color(0xFFFFE066),
+        Color(0xFF247BA0), Color(0xFF0AAEB9), Color(0xFFEAF6ED)
     ),
     legend: List<String> = listOf(
         "groceries",

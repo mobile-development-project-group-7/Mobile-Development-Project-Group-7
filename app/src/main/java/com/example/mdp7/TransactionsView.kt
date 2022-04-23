@@ -15,9 +15,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun TransactionsView(){
-    var total by remember {
-        mutableStateOf("")}
-    val TransactionVM = viewModel<TransactionViewModel>(LocalContext.current as ComponentActivity)
 
 
 }

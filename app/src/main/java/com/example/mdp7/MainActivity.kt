@@ -47,6 +47,8 @@ import androidx.navigation.compose.rememberNavController
 
 
 import android.view.WindowManager
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.rounded.Menu
 
 class MainActivity : ComponentActivity() {
 
@@ -96,11 +98,7 @@ class MainActivity : ComponentActivity() {
                             }
 
                         ) {
-                            Icon(
-                                imageVector = Icons.Default.MoreVert,
-                                contentDescription = "image",
-                                tint = Color.Black,
-                            )
+                            Icon(Icons.Rounded.Menu, contentDescription = "Localized description")
                         }
                         DropdownMenu(
                             expanded = expanded.value ,

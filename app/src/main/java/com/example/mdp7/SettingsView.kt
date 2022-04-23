@@ -48,11 +48,11 @@ fun SettingsView() {
     mDay = mCalendar.get(Calendar.DAY_OF_MONTH)
     mCalendar.time = Date()
 
-    val ReminderDate = remember { mutableStateOf("") }
+    val reminderDate = remember { mutableStateOf("") }
     val mDatePickerDialog = DatePickerDialog(
         mContext,
         { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-            ReminderDate.value = "$mDayOfMonth/${mMonth + 1}/$mYear"
+            reminderDate.value = "$mDayOfMonth/${mMonth + 1}/$mYear"
         }, mYear, mMonth, mDay
     )
 

@@ -1,12 +1,11 @@
 package com.example.mdp7
 
-<<<<<<< HEAD
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.res.painterResource
-=======
 import android.app.DatePickerDialog
 import android.widget.DatePicker
 import androidx.compose.foundation.BorderStroke
@@ -29,7 +28,7 @@ import com.example.mdp7.components.TransactionTypeChip
 import java.util.*
 import androidx.compose.ui.platform.LocalContext
 import com.example.mdp7.components.ImageChip
->>>>>>> 796af3d03dc50efad0a8b15476dc72a529419ae5
+
 
 @Composable
 fun SettingsView() {
@@ -150,8 +149,6 @@ fun SettingsView() {
             Text(text = "Name:")
             OutlinedTextField(
                 modifier = Modifier
-                    .width(200.dp)
-                    .height(40.dp)
                     .padding(start = 15.dp),
                 value = name,
                 onValueChange = { name = it },
@@ -164,8 +161,6 @@ fun SettingsView() {
             Text(text = "Total:")
             OutlinedTextField(
                 modifier = Modifier
-                    .width(200.dp)
-                    .height(40.dp)
                     .padding(start = 15.dp),
                 value = total,
                 onValueChange = { total = it },
@@ -236,13 +231,7 @@ fun SettingsView() {
             )
         }
 
-<<<<<<< HEAD
-        Text(text = "Choose category:")
-        Row() {
-            Icon(painter = painterResource(id = R.drawable.ic_food), contentDescription = "food_category_icon")
-            Icon(painter = painterResource(id = R.drawable.ic_transport), contentDescription = "transport_category_icon")
-        }
-=======
+
         Text(text = "Choose category",
             style = MaterialTheme.typography.h6)
                 Row(){
@@ -319,7 +308,7 @@ fun SettingsView() {
 
                 }
 
->>>>>>> 796af3d03dc50efad0a8b15476dc72a529419ae5
+
         Row(){
             val isChecked = remember { mutableStateOf(false) }
             Checkbox(
@@ -329,10 +318,7 @@ fun SettingsView() {
                 }
             )
             Text(text = "Send me notification")
-<<<<<<< HEAD
-=======
 
->>>>>>> 796af3d03dc50efad0a8b15476dc72a529419ae5
         }
 
         Button(
@@ -342,15 +328,11 @@ fun SettingsView() {
             modifier = Modifier.padding(top = 20.dp)
         ) {
 
-<<<<<<< HEAD
 
-        OutlinedButton(onClick = { /*TODO*/ }) {
-            Text(text = "Save")
-=======
             Text(
                 text = "Save",
                 color = White)
->>>>>>> 796af3d03dc50efad0a8b15476dc72a529419ae5
+
         }
 
     }

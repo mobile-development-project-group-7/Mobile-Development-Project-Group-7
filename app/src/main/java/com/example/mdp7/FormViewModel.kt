@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
 class FormViewModel : ViewModel() {
-    var TransactionName by mutableStateOf("")
+    var transactionName by mutableStateOf("")
    /* var total by mutableStateOf("")*/
 
 }

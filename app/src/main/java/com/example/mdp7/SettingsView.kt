@@ -149,7 +149,9 @@ fun SettingsView() {
             Text(text = "Name:")
             OutlinedTextField(
                 modifier = Modifier
-                    .padding(start = 15.dp),
+                    .padding(start = 15.dp)
+                    .width(200.dp)
+                    .height(40.dp),
                 value = name,
                 onValueChange = { name = it },
                 colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -161,7 +163,9 @@ fun SettingsView() {
             Text(text = "Total:")
             OutlinedTextField(
                 modifier = Modifier
-                    .padding(start = 15.dp),
+                    .padding(start = 15.dp)
+                    .width(200.dp)
+                    .height(40.dp),
                 value = total,
                 onValueChange = { total = it },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
@@ -192,7 +196,7 @@ fun SettingsView() {
 
         Row(
 
-            modifier = Modifier.padding(top = 30.dp)
+            modifier = Modifier.padding(top = 20.dp)
         ) {
 
             val  weeklyChipState= remember {
@@ -233,7 +237,7 @@ fun SettingsView() {
 
 
         Text(text = "Choose category",
-            style = MaterialTheme.typography.h6)
+            style = MaterialTheme.typography.h6,)
                 Row(){
                     val groceriesChipState = remember {
                         mutableStateOf(false)
@@ -302,12 +306,7 @@ fun SettingsView() {
                         },
                         tintColor = Color(0xFFEAF6ED)
                     )
-
-
-
-
                 }
-
 
         Row(){
             val isChecked = remember { mutableStateOf(false) }

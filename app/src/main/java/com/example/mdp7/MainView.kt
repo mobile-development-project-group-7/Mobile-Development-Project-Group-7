@@ -91,7 +91,9 @@ fun MainView(){
             Text(text = "Name:")
             OutlinedTextField(
                 modifier = Modifier
-                    .padding(start = 15.dp),
+                    .padding(start = 15.dp)
+                    .width(200.dp)
+                    .height(40.dp),
                 value = transactionName,
                 onValueChange = { transactionName = it },
                 colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -105,7 +107,9 @@ fun MainView(){
             Text(text = "Total:")
             OutlinedTextField(
                 modifier = Modifier
-                    .padding(start = 15.dp),
+                .padding(start = 15.dp)
+                .width(200.dp)
+                .height(40.dp),
                 value = transactionTotal,
                 onValueChange = { transactionTotal = it },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),

@@ -32,12 +32,21 @@ class MainActivity : ComponentActivity() {
         setContent {
             MDP7Theme {
 
-                MainScaffold()
+                MainView()
 
             }
         }
     }
+    @Composable
+    fun MainView(){
+        val userVM = viewModel<UserViewModel>()
 
+        if (userVM.username.value.isEmpty()){
+            LoginView(userVM)
+        }else{
+            MainScaffold()
+        }
+    }
     @Composable
     fun MainScaffold() {
 
@@ -54,10 +63,6 @@ class MainActivity : ComponentActivity() {
             scaffoldState = scaffoldState,
             content = {
                 Navigation(navController)
-                Column(verticalArrangement = Arrangement.SpaceAround) {
-
-
-                }
 
             },
             topBar = {
@@ -150,7 +155,7 @@ class MainActivity : ComponentActivity() {
     @Preview(showBackground = true)
     @Composable
     fun DefaultPreview() {
-        MainScaffold()
+        MainView()
 
     }
 }

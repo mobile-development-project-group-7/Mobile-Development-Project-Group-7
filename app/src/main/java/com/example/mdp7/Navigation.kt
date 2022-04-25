@@ -20,7 +20,7 @@ fun Navigation(navController: NavHostController){
     val userVM = viewModel<UserViewModel>()
 
 
-    NavHost(navController = navController, startDestination = LOGIN_ROUTE) {
+    NavHost(navController = navController, startDestination = HOME_ROUTE) {
         composable(route = LOGIN_ROUTE) {LoginView(userVM)}
         composable(route = REGISTRATION_ROUTE) {RegistrationApp()}
         composable(route = HOME_ROUTE) {MainView()}

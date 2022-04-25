@@ -32,21 +32,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             MDP7Theme {
 
-                MainView()
+                MainScaffold()
 
             }
         }
     }
-    @Composable
-    fun MainView(){
-        val userVM = viewModel<UserViewModel>()
 
-        if (userVM.username.value.isEmpty()){
-            LoginView(userVM)
-        }else{
-            MainScaffold()
-        }
-    }
     @Composable
     fun MainScaffold() {
 
@@ -155,7 +146,7 @@ class MainActivity : ComponentActivity() {
     @Preview(showBackground = true)
     @Composable
     fun DefaultPreview() {
-        MainView()
+        MainScaffold()
 
     }
 }
